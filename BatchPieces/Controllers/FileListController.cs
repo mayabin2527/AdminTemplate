@@ -10,7 +10,7 @@ namespace BatchPieces.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Name = "MA YABIN";
+            ViewBag.Name = "MA YABIN ";
             return View ();
         }
     }
