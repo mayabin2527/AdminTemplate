@@ -34,6 +34,8 @@
 
     <!-- Custom Theme Style -->
     <link href="build/css/custom.min.css" rel="stylesheet">
+    <script src="vendors/jquery/dist/jquery.min.js"></script>
+
 </head>
 
 <body class="nav-md">
@@ -48,15 +50,15 @@
                     <div class="clearfix"></div>
 
                     <!-- menu profile quick info
-    <div class="profile clearfix">
-        <div class="profile_pic">
-            <img src="images/img.jpg" alt="..." class="img-circle profile_img">
-        </div>
-        <div class="profile_info">
-            <span>Welcome,</span>
-            <h2>John Doe</h2>
-        </div>
-    </div>-->
+                    <div class="profile clearfix">
+                        <div class="profile_pic">
+                            <img src="images/img.jpg" alt="..." class="img-circle profile_img">
+                        </div>
+                        <div class="profile_info">
+                            <span>Welcome,</span>
+                            <h2>John Doe</h2>
+                        </div>
+                    </div>-->
                     <!-- /menu profile quick info -->
 
                     <br />
@@ -67,14 +69,14 @@
                             <!--  <h3>General</h3>-->
                             <ul class="nav side-menu">
                                 <!--  <li>
-         <a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
-         <ul class="nav child_menu">
-             <li><a href="index.html">Dashboard</a></li>
-             <li><a href="index2.html">Dashboard2</a></li>
-             <li><a href="index3.html">Dashboard3</a></li>
-         </ul>
-     </li>
-     -->
+                                    <a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li><a href="index.html">Dashboard</a></li>
+                                        <li><a href="index2.html">Dashboard2</a></li>
+                                        <li><a href="index3.html">Dashboard3</a></li>
+                                    </ul>
+                                </li>
+                                -->
                                 <li>
                                     <a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
@@ -304,20 +306,20 @@
             <div class="right_col" role="main">
                 <div class="">
                     <!-- <div class="page-title">
-                            <div class="title_left">
-            <h3>Form Elements</h3>
-        </div>
+                                        <div class="title_left">
+                        <h3>Form Elements</h3>
+                    </div>
 
-                        <div class="title_right">
-                            <div class="col-md-5 col-sm-5  form-group pull-right top_search">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Search for...">
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-default" type="button">Go!</button>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>-->
+                                    <div class="title_right">
+                                        <div class="col-md-5 col-sm-5  form-group pull-right top_search">
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" placeholder="Search for...">
+                                                <span class="input-group-btn">
+                                                    <button class="btn btn-default" type="button">Go!</button>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>-->
                 </div>
                 <div class="clearfix"></div>
                 <div class="row">
@@ -417,14 +419,15 @@
                                             <button class="btn btn-primary" type="button">Cancel</button>
                                             <button class="btn btn-primary" type="reset">Reset</button>
                                             <button type="submit" class="btn btn-success">Submit</button>
-
+                                            <button type="button" class="btn btn-success export">Export(可使用)</button>
                                         </div>
                                     </div>
 
                                 </form>
                                 <div class="col-md-6 col-sm-6 offset-md-3">
                                     <button type="button" onclick="search()" class="btn btn-primary">Search</button>
-                                    <button type="button" onclick="submit()" class="btn btn-primary">Export</button>
+                                    <button type="button" onclick="submit()" class="btn btn-primary">Export（提交事件可使用）</button>
+                                    <button type="button" class="btn btn-success">Export</button>
                                 </div>
 
                             </div>
@@ -1429,17 +1432,17 @@
                     </div>
                 </div>
             </div>
-            </div>
-            <!-- /page content -->
-            <!-- footer content -->
-            <footer>
-                <div class="pull-right">
-                    Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
-                </div>
-                <div class="clearfix"></div>
-            </footer>
-            <!-- /footer content -->
         </div>
+        <!-- /page content -->
+        <!-- footer content -->
+        <footer>
+            <div class="pull-right">
+                Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
+            </div>
+            <div class="clearfix"></div>
+        </footer>
+        <!-- /footer content -->
+    </div>
     </div>
 
     <!-- jQuery -->
@@ -1483,29 +1486,30 @@
 
 
 
-<script>
-    function submit() {
+<script>function submit() {
 
         console.log('111')
         $.ajax({
 
-            url: "Froms/AddDocModel", // 请求路径
+            url: "Forms/AddDocModel", // 请求路径
 
-            type: "POST", //请求方式 
+            type: "POST", //请求方式
 
             data: { "username": "jack", "age": 23 },//请求参数
 
             success: function (data) {
 
                 alert(data.State);
+                console.log(data)
                 if (data.State = "Ok") {
-                    window.location.href = "Home";
+                   // window.location.href = "Home";
+                    alert("导出成功:" + data.Path)
                 }
 
             },//响应成功后的回调函数
 
-            error: function () {
-
+            error: function (data) {
+                console.log("出错啦..." + data)
                 alert("出错啦...")
 
             },//表示如果请求响应出现错误，会执行的回调函数
@@ -1513,13 +1517,29 @@
             dataType: "json"//设置接受到的响应数据的格式
 
         });
-        }
-        
+    }
 
-function search(){
-    console.log('search')
 
-    $("#table1").append("  <tr>  <th scope = 'row' > 5</th > <td>Larry5</td> <td>the Bird5</td>   <td>twitter5</td> </tr >");
-}
+    function search() {
+        console.log('search')
 
-</script>
+        $("#table1").append("  <tr>  <th scope = 'row' > 5</th > <td>Larry5</td> <td>the Bird5</td>   <td>twitter5</td> </tr >");
+    }</script>
+<script>$(function () {
+        //使用class点击事件，不与本框架冲突，设置弹出框赋值
+        $(".export").click(function (e) {
+
+          
+            var V = $("#first-name").attr('class');//根据ID获取熟悉
+            console.log(V);
+            if (V.indexOf("parsley-error") >= 0) {
+
+                alert('Cts中包含parsley-error字符串');
+
+            }
+            
+
+        })
+
+
+    })</script>

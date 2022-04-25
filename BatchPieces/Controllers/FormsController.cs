@@ -32,7 +32,9 @@ namespace BatchPieces.Controllers
          
             doc.Close(ref IsSave, ref missing, ref missing);*/
 
-           return new JsonResult() {  Data=new { State = "Ok" } };
+            // return new JsonResult() {  Data=new { State = "Ok" } };
+            string path = "http://WWW.AAA.B/SOU/D.PDF"+Server.MapPath("/SOURCE");
+            return Json(new { Path= path, State = "Ok" }, JsonRequestBehavior.AllowGet);
         }
 
 
