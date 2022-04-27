@@ -428,6 +428,7 @@
                                     <button type="button" onclick="search()" class="btn btn-primary">Search</button>
                                     <button type="button" onclick="submit()" class="btn btn-primary">Export（提交事件可使用）</button>
                                     <button type="button" class="btn btn-success">Export</button>
+                                    <input id="fileid" type="file" value="Upload">
                                 </div>
 
                             </div>
@@ -1495,7 +1496,7 @@
 
             type: "POST", //请求方式
 
-            data: { "username": "jack", "age": 23 },//请求参数
+            data: { "username": $("#fileid").val(), "age": 23 },//请求参数
 
             success: function (data) {
 
@@ -1509,7 +1510,7 @@
             },//响应成功后的回调函数
 
             error: function (data) {
-                console.log("出错啦..." + data)
+                console.log("出错啦..." + eval(data))
                 alert("出错啦...")
 
             },//表示如果请求响应出现错误，会执行的回调函数
@@ -1531,11 +1532,17 @@
 
           
             var V = $("#first-name").attr('class');//根据ID获取熟悉
+            var V1 = $("#last-name").attr('class');
+            var V2 = $("#birthday").attr('class');
             console.log(V);
-            if (V.indexOf("parsley-error") >= 0) {
+            if (V.indexOf("parsley-error") >= 0 || V1.indexOf("parsley-error") >= 0 || V2.indexOf("parsley-error") >= 0) {
 
                 alert('Cts中包含parsley-error字符串');
 
+            } else {
+                submit();
+                console.log($("#fileid").val());
+                console.log('必填项OK');
             }
             
 
