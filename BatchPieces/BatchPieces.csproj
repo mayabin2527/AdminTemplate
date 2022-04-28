@@ -72,6 +72,7 @@
     <Folder Include="Views\Forms\" />
     <Folder Include="Views\FileList\" />
     <Folder Include="Gentelella-Master\" />
+    <Folder Include="Views\Test\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\HomeController.cs" />
@@ -83,6 +84,7 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\FormsController.cs" />
     <Compile Include="Controllers\FileListController.cs" />
+    <Compile Include="Controllers\TestController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Web.config" />
@@ -4086,6 +4088,7 @@
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Forms\Index.cshtml" />
     <Content Include="Views\FileList\Index.cshtml" />
+    <Content Include="Views\Test\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="vendors\normalize-css\LICENSE.md" />
