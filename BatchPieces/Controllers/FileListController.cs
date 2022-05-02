@@ -11,7 +11,11 @@ namespace BatchPieces.Controllers
         public ActionResult Index()
         {
             ViewBag.Name = "MA YABIN ";
-            return View ();
+            return View();
+        }
+        public JsonResult DeltelWithID(string username, string age)
+        {
+            return Json(new { FileID = username, State = "Ok" }, JsonRequestBehavior.AllowGet);
         }
     }
 }

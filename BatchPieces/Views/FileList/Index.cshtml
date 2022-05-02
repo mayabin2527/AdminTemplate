@@ -30,20 +30,68 @@
             //使用class点击事件，不与本框架冲突，设置弹出框赋值
             $(".delete1").click(function (e) {
 
-                alert(0);
+                alert('自定义class删除点击');
                 
                
                 var V = $(this).attr('id');//当前点击ID
                 console.log(V);
               
-                $("#fileid").text(V); //给元素添加内容
+                $("#delfileid").text(V); //给元素添加内容
                // $(":text").val("Hello www.qipa250.com");//var V = $(this).text();//当前文本值 // $("#fileid").val("Hello www.qipa250.com")
             })
 
-            $(".btn-primary").click(function (e) {
-                var V = $("#fileid").text();
-                alert('delete' + V);
+            $(".edit1").click(function (e) {
 
+                alert('自定义class edit点击');
+
+
+                var V = $(this).attr('id');
+                console.log(V);
+
+                $("#fileid").text(V); 
+            })
+
+            $(".btn-primaryTest").click(function (e) {
+                var V = $("#fileid").text();
+                console.log('btn-primary click delete：' + V);
+
+            })
+
+
+            $(".savechanges").click(function (e) {
+                var V = $("#fileid").text();
+                console.log('savechanges click delete：' + V);
+
+                $.ajax({
+
+                    url: "FileList/DeltelWithID", // 请求路径
+
+                    type: "POST", //请求方式
+
+                    data: { "username": V, "age": 23 },//请求参数
+
+                    success: function (data) {
+
+                        //alert(data.State);
+                        console.log(data)
+                        if (data.State = "Ok") {
+                            // window.location.href = "Home";
+                           // $(".bs-example-modal-sm").attr('style', "display: none;");//请求接口成功后隐藏弹出框样式  style="display: none;"
+                            //$(".bs-example-modal-sm").removeClass("show");
+                            alert("删除成功:" + data.FileID)
+                        }
+
+                    },//响应成功后的回调函数
+
+                    error: function (data) {
+                        console.log("出错啦..." + eval(data))
+                        alert("出错啦...")
+
+                    },//表示如果请求响应出现错误，会执行的回调函数
+
+                    dataType: "json"//设置接受到的响应数据的格式
+
+                });
             })
        })
 
@@ -391,8 +439,11 @@
                                         <a href="Javascript:Delete()" class="fa fa-times">删除</a>
                                         <a href="#" class="fa fa-times" data-toggle="modal" data-target=".bs-example-modal-lg">删除</a>
                                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Large modal</button>
-                                        
-                                        <a id="delete123" href="#" class="fa fa-times delete1" data-toggle="modal" data-target=".bs-example-modal-lg">删除</a>
+
+                                        <!--<a id="delete123" href="#" class="fa fa-times delete1" data-toggle="modal" data-target=".bs-example-modal-lg">删除（可使用）</a>-->
+                                        <a id="edit123" href="#" class="fa fa-times edit1" data-toggle="modal" data-target=".bs-example-modal-lg">编辑(可使用)</a>
+                                        <a id="delete123" href="#" class="fa fa-times delete1" data-toggle="modal" data-target=".bs-example-modal-sm">删除(可使用)</a>
+
                                     </td>
                                 </tr>
                             </tbody>
@@ -474,12 +525,14 @@
                                         </div>
                                         <div class="modal-body">
                                             <h4>Text in a modal</h4>
+                                            <a id="delfileid"></a>
                                             <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
                                             <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                             <button type="button" class="btn btn-primary">Save changes</button>
+                                            <button type="button" class="btn btn-primary savechanges" data-dismiss="modal">Save changes API</button>
                                         </div>
 
                                     </div>
