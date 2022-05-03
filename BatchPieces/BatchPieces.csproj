@@ -63,6 +63,9 @@
     <Reference Include="Microsoft.Office.Interop.Word">
       <HintPath>..\packages\Microsoft.Office.Interop.Word.15.0.4797.1003\lib\net20\Microsoft.Office.Interop.Word.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\" />
@@ -74,6 +77,7 @@
     <Folder Include="Gentelella-Master\" />
     <Folder Include="Views\Test\" />
     <Folder Include="upload\" />
+    <Folder Include="Views\File\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\HomeController.cs" />
@@ -86,6 +90,7 @@
     <Compile Include="Controllers\FormsController.cs" />
     <Compile Include="Controllers\FileListController.cs" />
     <Compile Include="Controllers\TestController.cs" />
+    <Compile Include="Controllers\FileController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Web.config" />
@@ -4090,6 +4095,7 @@
     <Content Include="Views\Forms\Index.cshtml" />
     <Content Include="Views\FileList\Index.cshtml" />
     <Content Include="Views\Test\Index.cshtml" />
+    <Content Include="Views\File\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="vendors\normalize-css\LICENSE.md" />
@@ -4827,6 +4833,7 @@
     <None Include="vendors\jqvmap\create\config\continent.json" />
     <None Include="vendors\jqvmap\create\config\new-york.json" />
     <None Include="Gentelella-Master\gentelella-master.zip" />
+    <None Include="upload\JSONFile.json" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="vendors\moment\moment.d.ts" />

@@ -1,0 +1,56 @@
+﻿{
+  "sites": [
+    {
+      "name": "菜鸟教程",
+      "url": "www.runoob.com"
+    },
+    {
+      "name": "google",
+      "url": "www.google.com"
+    },
+    {
+      "name": "微博1",
+      "url": "www.weibo.com"
+    },
+    {
+      "name": "微博2",
+      "url": "www.weibo.com"
+    },
+    {
+      "name": "微博3",
+      "url": "www.weibo.com"
+    },
+    {
+      "name": "微博4",
+      "url": "www.weibo.com"
+    },
+    {
+      "name": "微博5",
+      "url": "www.weibo.com"
+    },
+    {
+      "name": "微博6",
+      "url": "www.weibo.com"
+    },
+    {
+      "name": "微博7",
+      "url": "www.weibo.com"
+    },
+    {
+      "name": "微博8",
+      "url": "www.weibo.com"
+    },
+    {
+      "name": "微博9",
+      "url": "www.weibo.com"
+    },
+    {
+      "name": "微博10",
+      "url": "www.weibo.com"
+    },
+    {
+      "name": "微博11",
+      "url": "www.weibo.com"
+    }
+  ]
+}
