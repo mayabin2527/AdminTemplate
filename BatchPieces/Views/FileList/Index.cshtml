@@ -31,11 +31,11 @@
             $(".delete1").click(function (e) {
 
                 alert('自定义class删除点击');
-                
-               
+
+
                 var V = $(this).attr('id');//当前点击ID
                 console.log(V);
-              
+
                 $("#delfileid").text(V); //给元素添加内容
                // $(":text").val("Hello www.qipa250.com");//var V = $(this).text();//当前文本值 // $("#fileid").val("Hello www.qipa250.com")
             })
@@ -48,12 +48,42 @@
                 var V = $(this).attr('id');
                 console.log(V);
 
-                $("#fileid").text(V); 
+                $("#fileid").text(V);
             })
 
-            $(".btn-primaryTest").click(function (e) {
+            $(".savefile").click(function (e) {
                 var V = $("#fileid").text();
-                console.log('btn-primary click delete：' + V);
+                console.log('savefile click id：' + V);
+                //上传文件OK
+                var formData = new FormData();
+                formData.append("file", $('#uploadID')[0].files[0]);
+
+                $.ajax({
+
+                    //url: "FileList/UpLoad", // 请求路径
+                    url: "@Url.Action("UpLoadOne", "FileList")",
+                    type: "POST", //请求方式
+
+                    //data: { "fileid": V, "type": 23 },//请求参数
+                    data: formData,
+                    processData: false, // 使数据不做处理
+                    contentType: false, // 不要设置Content-Type请求头
+                    success: function (data) {
+
+                        //alert(data.State);
+                        console.log(data)
+
+
+                    },
+
+                    error: function (data) {
+                        alert("出错啦...")
+
+                    },
+
+                    dataType: "json"
+
+                });
 
             })
 
@@ -497,13 +527,16 @@
                                         <div class="modal-body">
                                             <h4>Text in a modal</h4>
                                             <a id="fileid"></a>
-                                            <input type="file" value="Upload">
+
+                                            <input id="uploadID" type="file" value="Upload">
+
                                             <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
                                             <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                             <button type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+                                            <button type="button" class="btn btn-primary savefile" data-dismiss="modal">Save File</button>
                                         </div>
 
                                     </div>
@@ -547,8 +580,10 @@
 
 
                 <!--table2-->
-
-
+                <form>
+                    <input type="file" name="file" />
+                    <input type="button" value="提交" onclick="sub()" />
+                </form>
 
 
             </div>
@@ -584,7 +619,7 @@
 
 
 <script>
-   
+
     function Edit() {
         alert('Edit')
     }
@@ -593,8 +628,20 @@
 
         alert('Delete')
     }
+    function sub()
+{
+$("#form1").ajaxSubmit({
+url: "@Url.Action("UpLoadOne", "FileList")",
+type: "post",
+success: function (data) {
+//......
+},
+error: function (aa) {
+alert(aa);
+}
+});
+}
 
-   
 </script>
 
 

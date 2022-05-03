@@ -73,6 +73,7 @@
     <Folder Include="Views\FileList\" />
     <Folder Include="Gentelella-Master\" />
     <Folder Include="Views\Test\" />
+    <Folder Include="upload\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\HomeController.cs" />
