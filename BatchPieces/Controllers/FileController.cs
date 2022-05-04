@@ -35,7 +35,7 @@ namespace BatchPieces.Controllers
         {
             //https://datatables.net/manual/ajax#Loading-data
             List<Employee> list= new List<Employee>();
-            Employee i = new Employee() { Name= "Name", Position= "Position", Office= "Office", Age="22", Startdate= "Startdate" , Salary= "Salary" };
+          /*  Employee i = new Employee() { Name= "Name", Position= "Position", Office= "Office", Age="22", Startdate= "Startdate" , Salary= "Salary" };
             Employee i1 = new Employee() { Name = "Name23", Position = "Position", Office = "Office", Age = "23", Startdate = "Startdate", Salary = "<a href = '#' > View </a> <a id = 'edit88888' href = '#' class='fa fa-edit edit1' data-toggle='modal' data-target='.bs-example-modal-lg'>编辑</a>  <a id = 'delete000001' href='#' class='fa fa-times delete1' data-toggle='modal' data-target='.bs-example-modal-sm'>删除</a>" };
             list.Add(i);
             list.Add(i1);
@@ -44,6 +44,18 @@ namespace BatchPieces.Controllers
             Employee i4 = new Employee() { Name = "Name4", Position = "Position", Office = "Office", Age = "22", Startdate = "Startdate", Salary = "Salary" };
             list.Add(i3);
             list.Add(i4);
+            */
+            for (int i = 1; i <= 50; i++)
+            {
+                string Name = "Name" + i.ToString();
+                string Position = "Position" + i.ToString();
+                string Office = "Office" + i.ToString();
+                string Age = i.ToString();
+                string Startdate = DateTime.Now.ToString("yy-MM-dd hh:mm:ss,fffffff");
+                string sa = " <a id = '{0}' href = '#' class='fa fa-edit edit1' data-toggle='modal' data-target='.bs-example-modal-lg'>编辑</a>  <a id = '{1}' href='#' class='fa fa-times delete1' data-toggle='modal' data-target='.bs-example-modal-sm'>删除</a>";
+                string Salary = string.Format(sa,"edit"+ i.ToString(),"deltel"+ i.ToString());
+                list.Add(new Employee() { Name = Name, Position = Position, Office = Office, Age = Age, Startdate = Startdate, Salary = Salary });
+            }
 
             return Json(new { data = list, State = "Ok" }, JsonRequestBehavior.AllowGet);
         }

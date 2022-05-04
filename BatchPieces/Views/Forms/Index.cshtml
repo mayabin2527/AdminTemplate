@@ -440,17 +440,17 @@
 
                 <div class="x_content">
 
-                    <table class="table">
+                    <table id="datatable" class="table">
                         <thead>
                             <tr>
-                                <th>#</th>
+                                <th>ID</th>
                                 <th>First Name</th>
                                 <th>Last Name</th>
                                 <th>Username</th>
                             </tr>
                         </thead>
                         <tbody id="table1">
-                            <tr>
+                            <!--<tr>
                                 <th scope="row">1</th>
                                 <td>Mark</td>
                                 <td>Otto</td>
@@ -467,7 +467,7 @@
                                 <td>Larry</td>
                                 <td>the Bird</td>
                                 <td>twitter</td>
-                            </tr>
+                            </tr>-->
                         </tbody>
                     </table>
 
@@ -1523,8 +1523,38 @@
 
     function search() {
         console.log('search')
+      
+        $.ajax({
+            url: "Forms/myData",
+            type: "POST",
+            data: { "username": $("#fileid").val(), "age": 23 },
+            success: function (data) {
+                if (data.State = "Ok") {
+                    $("#table1").empty();//清空  
+                    $("#table1").append(data.data);
+                }
 
-        $("#table1").append("  <tr>  <th scope = 'row' > 5</th > <td>Larry5</td> <td>the Bird5</td>   <td>twitter5</td> </tr >");
+            },error: function (data) {
+                alert("出错啦...")
+
+            },
+
+            dataType: "json"
+
+        });
+
+        /*$('#datatable').DataTable({
+            ajax: {
+                url: 'File/myData',
+                dataSrc: 'data'
+            },
+            columns: [{ data: 'ID' },
+                { data: 'First' },
+                { data: 'LastName' },
+                { data: 'Username' }]
+        });*/
+
+       // $("#table1").append("  <tr>  <th scope = 'row' > 5</th > <td>Larry5</td> <td>the Bird5</td>   <td>twitter5</td> </tr >");
     }</script>
 <script>$(function () {
         //使用class点击事件，不与本框架冲突，设置弹出框赋值

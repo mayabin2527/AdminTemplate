@@ -92,6 +92,30 @@ namespace BatchPieces.Controllers
             return ret;
         }
 
-        
-    }
+        //后端拼接数据返回 前段datatables 使用 ok 建议使用
+        public JsonResult myData(string username, string age)
+        {
+            List<Employee> list = new List<Employee>();
+            for (int i = 1; i <= 50; i++)
+            {
+                string ID = i.ToString();
+                string First = "First" + i.ToString();
+                string LastName = "LastName" + i.ToString();
+                string Username = "Username"+ i.ToString();
+               
+                string sa = " <a id = '{0}' href = '#' class='fa fa-edit edit1' data-toggle='modal' data-target='.bs-example-modal-lg'>编辑</a>  <a id = '{1}' href='#' class='fa fa-times delete1' data-toggle='modal' data-target='.bs-example-modal-sm'>删除</a>";
+                string Salary = string.Format(sa, "edit" + i.ToString(), "deltel" + i.ToString());
+                list.Add(new Employee() { ID = ID, First = First, LastName = LastName, Username = Salary });
+            }
+            return Json(new { data = " <tr>  <td> 5</td> <td>Larry5</td> <td>the Bird5</td>   <td>twitter5</td> </tr >", State = "Ok" }, JsonRequestBehavior.AllowGet);
+        }
+        public class Employee
+        {
+           
+            public string ID { get; set; }
+            public string First { get; set; }
+            public string LastName { get; set; }
+            public string Username { get; set; }
+        }
+        }
 }
