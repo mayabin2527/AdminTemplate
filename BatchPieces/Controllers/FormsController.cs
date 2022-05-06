@@ -13,6 +13,43 @@ namespace BatchPieces.Controllers
         {
             return View ();
         }
+        public JsonResult GetCompany()
+        {
+            /* DAPPER   https://www.jianshu.com/p/cb304bb8cc3e
+            using (var connection = new SqlConnection(...)) 
+{ 
+  var authors = connection.Query<Author>(
+    "Select * From Author").ToList(); 
+}
+             */
+
+            List<Employee> list = new List<Employee>();
+            for (int i = 1; i <= 10; i++)
+            {
+                string ID = "10000"+i.ToString();
+                string First = "First" + i.ToString();
+             
+                list.Add(new Employee() { ID = ID, First = First, LastName = "LastName", Username = "Salary" });
+            }
+            return Json(new { list = list, State = "Ok" });
+
+
+        }
+        public JsonResult GetCategory(string company)
+        {
+            List<Employee> list = new List<Employee>();
+            for (int i = 1; i <= 20; i++)
+            {
+                string ID = "10000" + i.ToString();
+                string First = "类别" + i.ToString();
+
+                list.Add(new Employee() { ID = ID, First = First, LastName = "", Username = "" });
+            }
+            //查询List 
+            // var newlist = list.Where(a => a.ID == "200001" && a.LastName == "类别1").ToList();
+            var newlist = list.Where(a => a.ID == company).ToList();
+            return Json(new { list = newlist, State = "Ok" });
+        }
 
         public JsonResult AddDocModel(string username, string age)
         {
@@ -71,12 +108,23 @@ namespace BatchPieces.Controllers
                 wordApp.Quit();
             }
 
+            // 根据Word书签赋值 
+            SetBookMarksValue(null, "T1", "ItemName");
+
 
            //path = "http://WWW.AAA.B/SOU/D.PDF"+Server.MapPath("/SOURCE");
             return Json(new { Path= path, State = "Ok" }, JsonRequestBehavior.AllowGet);
         }
-
-
+        /// <summary>
+        /// 根据Word书签赋值 
+        /// </summary>
+        /// <param name="doc"></param>
+        /// <param name="name"></param>
+        /// <param name="value"></param>
+        private void SetBookMarksValue(Microsoft.Office.Interop.Word.DocumentClass doc, object name, string value)
+        {
+            doc.Bookmarks.get_Item(ref name).Range.Text = value;
+        }
                
         public string GetStrByBookmarkName(String name)
         {

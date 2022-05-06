@@ -355,15 +355,25 @@
                                     <div class="form-group row">
                                         <label class="col-form-label col-md-3 col-sm-3 label-align">Select</label>
                                         <div class="col-md-9 col-sm-9 ">
-                                            <select class="form-control">
-                                                <option>Choose option</option>
+                                            <select id="company" class="form-control">
+                                               <!--<option>Choose option</option>
                                                 <option>Option one</option>
                                                 <option>Option two</option>
                                                 <option>Option three</option>
-                                                <option>Option four</option>
+                                                <option>Option four</option>--> 
                                             </select>
                                         </div>
                                     </div>
+                                     <div class="form-group row">
+                                        <label class="col-form-label col-md-3 col-sm-3 label-align">Select</label>
+                                        <div class="col-md-9 col-sm-9 ">
+                                            <select id="city" class="form-control">
+                                               <!--<option>Choose option</option>--> 
+                                            </select>
+                                        </div>
+                                    </div>
+
+
 
                                     <div class="item form-group">
                                         <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">
@@ -1556,7 +1566,8 @@
 
        // $("#table1").append("  <tr>  <th scope = 'row' > 5</th > <td>Larry5</td> <td>the Bird5</td>   <td>twitter5</td> </tr >");
     }</script>
-<script>$(function () {
+<script>
+    $(function () {
         //使用class点击事件，不与本框架冲突，设置弹出框赋值
         $(".export").click(function (e) {
 
@@ -1579,4 +1590,82 @@
         })
 
 
-    })</script>
+        ///初始化下拉
+        $.ajax({
+            url: "Forms/GetCompany",
+            type: "POST",
+            success: function (data) {
+                if (data.State = "Ok") {
+                    $("#company").empty();
+                    $.each(data.list, function (i, item) {
+
+                        $('#company').append($('<option></option>').val(item.ID).text(item.First));
+
+                    })
+
+                    changeCity();
+                }
+
+            }, error: function (data) {
+                alert("出错啦...")
+
+            },
+
+            dataType: "json"
+
+        });
+
+
+        $('#company').change(function () {
+
+            changeCity();
+
+        });
+
+
+        $('#city').change(function () {
+            var selectedPrceId = $.trim($('#city option:selected').val());
+            console.log(selectedPrceId);
+
+        });
+
+    })
+
+
+    function changeCity() {
+
+        var selectedPrceId = $.trim($('#company option:selected').val());
+        console.log(selectedPrceId);
+        if (selectedPrceId.length == 0) {
+
+           // emptyCity();
+
+        }
+
+        else {
+
+            $.ajax({
+                url: "Forms/GetCategory",
+                type: "POST",
+                data: { "company": selectedPrceId},
+                success: function (data) {
+                    if (data.State = "Ok") {
+                        $("#city").empty();
+                        $.each(data.list, function (i, item) {
+
+                            $('#city').append($('<option></option>').val(item.ID).text(item.First));
+
+                        })
+                    }
+
+                }, error: function (data) {
+
+                },
+
+                dataType: "json"
+
+            });
+        }
+
+    }
+</script>
