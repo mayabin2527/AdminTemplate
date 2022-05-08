@@ -10,6 +10,7 @@ namespace BatchPieces.Controllers
     {
         public ActionResult Index()
         {
+            //ADFS 登录参考：https://www.cnblogs.com/hudun/p/5919630.html
             return View ();
         }
 
