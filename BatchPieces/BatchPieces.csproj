@@ -4096,6 +4096,8 @@
     <Content Include="Views\FileList\Index.cshtml" />
     <Content Include="Views\Test\Index.cshtml" />
     <Content Include="Views\File\Index.cshtml" />
+    <Content Include="Scripts\fakeLoader.min.css" />
+    <Content Include="Scripts\fakeLoader.min.js" />
   </ItemGroup>
   <ItemGroup>
     <None Include="vendors\normalize-css\LICENSE.md" />

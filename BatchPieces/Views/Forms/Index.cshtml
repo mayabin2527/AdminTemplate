@@ -34,8 +34,8 @@
 
     <!-- Custom Theme Style -->
     <link href="build/css/custom.min.css" rel="stylesheet">
-    <script src="vendors/jquery/dist/jquery.min.js"></script>
-
+    <script src="Scripts/jquery.min.js"></script>
+   
 </head>
 
 <body class="nav-md">
@@ -306,20 +306,20 @@
             <div class="right_col" role="main">
                 <div class="">
                     <!-- <div class="page-title">
-                                        <div class="title_left">
-                        <h3>Form Elements</h3>
-                    </div>
+                            <div class="title_left">
+            <h3>Form Elements</h3>
+        </div>
 
-                                    <div class="title_right">
-                                        <div class="col-md-5 col-sm-5  form-group pull-right top_search">
-                                            <div class="input-group">
-                                                <input type="text" class="form-control" placeholder="Search for...">
-                                                <span class="input-group-btn">
-                                                    <button class="btn btn-default" type="button">Go!</button>
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>-->
+                        <div class="title_right">
+                            <div class="col-md-5 col-sm-5  form-group pull-right top_search">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Search for...">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" type="button">Go!</button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>-->
                 </div>
                 <div class="clearfix"></div>
                 <div class="row">
@@ -356,19 +356,19 @@
                                         <label class="col-form-label col-md-3 col-sm-3 label-align">Select</label>
                                         <div class="col-md-9 col-sm-9 ">
                                             <select id="company" class="form-control">
-                                               <!--<option>Choose option</option>
-                                                <option>Option one</option>
-                                                <option>Option two</option>
-                                                <option>Option three</option>
-                                                <option>Option four</option>--> 
+                                                <!--<option>Choose option</option>
+                                    <option>Option one</option>
+                                    <option>Option two</option>
+                                    <option>Option three</option>
+                                    <option>Option four</option>-->
                                             </select>
                                         </div>
                                     </div>
-                                     <div class="form-group row">
+                                    <div class="form-group row">
                                         <label class="col-form-label col-md-3 col-sm-3 label-align">Select</label>
                                         <div class="col-md-9 col-sm-9 ">
                                             <select id="city" class="form-control">
-                                               <!--<option>Choose option</option>--> 
+                                                <!--<option>Choose option</option>-->
                                             </select>
                                         </div>
                                     </div>
@@ -461,30 +461,44 @@
                         </thead>
                         <tbody id="table1">
                             <!--<tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>mdo</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>fat</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>Larry</td>
-                                <td>the Bird</td>
-                                <td>twitter</td>
-                            </tr>-->
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>mdo</td>
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>fat</td>
+                </tr>
+                <tr>
+                    <th scope="row">3</th>
+                    <td>Larry</td>
+                    <td>the Bird</td>
+                    <td>twitter</td>
+                </tr>-->
                         </tbody>
                     </table>
 
                 </div>
 
+                <!-- loading -->
+                <div class="modal fade" id="loading" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop='static'>
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title" id="myModalLabel">提示</h4>
+                            </div>
+                            <div class="modal-body">
+                                请稍候。。。<span id="result"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-
+                <label id="loadingLa">loading</label>
+                <div class="fakeLoader"></div>
                 <!--MYB-->
 
 
@@ -1491,37 +1505,77 @@
     <script src="vendors/starrr/dist/starrr.js"></script>
     <!-- Custom Theme Scripts -->
     <script src="build/js/custom.min.js"></script>
-
+    <!-- Loading -->
+    <link href="Scripts/fakeLoader.min.css" rel="stylesheet">
+    <script src="Scripts/fakeLoader.min.js"></script>
+    <script>$(document).ready(function () {
+            $.fakeLoader({
+                timeToHide: 1200,
+                bgColor: "#34495e",
+                spinner: "spinner3"
+            });
+        });</script>
 </body>
 </html>
 
 
 
-<script>function submit() {
+<script>
+    function loading() {
+        //$(".fakeloader").fakeLoader();
+    }
 
-        console.log('111')
+    function submit() {
+      //  loading();
+        $("#loadingModal").modal('show');
+       // 　$("#loadingModal").modal({backdrop:'static', keyboard:false});
+    console.log('submit');
+    //显示
+        $('#loading').modal('show');//MAC，Windows有效 https://www.cnblogs.com/hwaggLee/p/7001887.html
+    //影藏
+    //$('#loading').modal('hide');
+   
         $.ajax({
 
             url: "Forms/AddDocModel", // 请求路径
-
+            cache: false, //禁用缓存
             type: "POST", //请求方式
-
+            async: true,
             data: { "username": $("#fileid").val(), "age": 23 },//请求参数
-
+            beforeSend: function () {
+                
+               // $("#loadingLa").text('llllllllllll');
+                //$('#loading').modal('show');
+                
+            },
             success: function (data) {
-
-                alert(data.State);
+               
+                //alert(data.State);
                 console.log(data)
                 if (data.State = "Ok") {
                    // window.location.href = "Home";
-                    alert("导出成功:" + data.Path)
+                    $("#result").text('导出成功！');
+                   // setTimeout(loading(), 3000);
+                  //  $("#loadingLa").text('888888888888888');
+                   // alert("导出成功:" + data.Path)
+                    
+                    //延迟2秒执行
+                    var timeout = setTimeout(function () {
+                        //加载完关闭
+                        $('#loading').modal('hide');
+                    }, 2000);
+
                 }
 
             },//响应成功后的回调函数
 
             error: function (data) {
+                $('#loading').addClass("show111");  
+               
+
                 console.log("出错啦..." + eval(data))
-                alert("出错啦...")
+                //alert("出错啦...")
+                
 
             },//表示如果请求响应出现错误，会执行的回调函数
 
@@ -1577,10 +1631,11 @@
             var V2 = $("#birthday").attr('class');
             console.log(V);
             if (V.indexOf("parsley-error") >= 0 || V1.indexOf("parsley-error") >= 0 || V2.indexOf("parsley-error") >= 0) {
-
-                alert('Cts中包含parsley-error字符串');
+                loading();
+                console.log('Cts中包含parsley-error字符串');
 
             } else {
+                
                 submit();
                 console.log($("#fileid").val());
                 console.log('必填项OK');

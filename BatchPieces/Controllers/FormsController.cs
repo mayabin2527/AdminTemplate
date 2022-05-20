@@ -53,6 +53,11 @@ namespace BatchPieces.Controllers
 
         public JsonResult AddDocModel(string username, string age)
         {
+            for (int i = 0; i < 10; i++)
+            {
+                System.Threading.Thread.Sleep(1000);
+            }
+            return Json(new { Path = "ttt", State = "Ok" }, JsonRequestBehavior.AllowGet);
 
             /*无效代码
              * Microsoft.Office.Interop.Word.Application app = new Microsoft.Office.Interop.Word.Application();
