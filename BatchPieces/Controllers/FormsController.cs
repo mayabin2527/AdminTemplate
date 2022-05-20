@@ -76,6 +76,7 @@ namespace BatchPieces.Controllers
 
             // return new JsonResult() {  Data=new { State = "Ok" } };
             //return Json(new { Path = "PATE", State = "Ok" }, JsonRequestBehavior.AllowGet);
+            /*
             string path = "Deau";
             //如下MAC无法初始化
             object oMissing = System.Reflection.Missing.Value;
@@ -119,6 +120,7 @@ namespace BatchPieces.Controllers
 
            //path = "http://WWW.AAA.B/SOU/D.PDF"+Server.MapPath("/SOURCE");
             return Json(new { Path= path, State = "Ok" }, JsonRequestBehavior.AllowGet);
+            */
         }
         /// <summary>
         /// 根据Word书签赋值 
