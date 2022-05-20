@@ -76,7 +76,7 @@ namespace BatchPieces.Controllers
 
             // return new JsonResult() {  Data=new { State = "Ok" } };
             //return Json(new { Path = "PATE", State = "Ok" }, JsonRequestBehavior.AllowGet);
-            /*
+            /*   
             string path = "Deau";
             //如下MAC无法初始化
             object oMissing = System.Reflection.Missing.Value;
