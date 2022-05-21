@@ -53,12 +53,12 @@ namespace BatchPieces.Controllers
 
         public JsonResult AddDocModel(string username, string age)
         {
-            /* for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 10; i++)
             {
                 System.Threading.Thread.Sleep(1000);
             }
             return Json(new { Path = "ttt", State = "Ok" }, JsonRequestBehavior.AllowGet);
-            */
+            
             /*无效代码
              * Microsoft.Office.Interop.Word.Application app = new Microsoft.Office.Interop.Word.Application();
             string version = app.Version;
@@ -76,7 +76,7 @@ namespace BatchPieces.Controllers
 
             // return new JsonResult() {  Data=new { State = "Ok" } };
             //return Json(new { Path = "PATE", State = "Ok" }, JsonRequestBehavior.AllowGet);
-
+            /*
             string path = "Deau";
 //如下MAC无法初始化
 object oMissing = System.Reflection.Missing.Value;
@@ -119,7 +119,7 @@ SetBookMarksValue(null, "T1", "ItemName");
 
 
 //path = "http://WWW.AAA.B/SOU/D.PDF"+Server.MapPath("/SOURCE");
-return Json(new { Path= path, State = "Ok" }, JsonRequestBehavior.AllowGet);
+return Json(new { Path= path, State = "Ok" }, JsonRequestBehavior.AllowGet);*/
 
 }
 /// <summary>
