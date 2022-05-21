@@ -89,6 +89,7 @@
     <Folder Include="upload\" />
     <Folder Include="Views\File\" />
     <Folder Include="Tools\" />
+    <Folder Include="Images\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\HomeController.cs" />
@@ -4110,6 +4111,9 @@
     <Content Include="Views\File\Index.cshtml" />
     <Content Include="Scripts\fakeLoader.min.css" />
     <Content Include="Scripts\fakeLoader.min.js" />
+    <Content Include="Images\loading1.gif" />
+    <Content Include="Images\loading2.gif" />
+    <Content Include="Images\loading.gif" />
   </ItemGroup>
   <ItemGroup>
     <None Include="vendors\normalize-css\LICENSE.md" />
