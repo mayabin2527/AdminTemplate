@@ -1570,9 +1570,13 @@
             },//响应成功后的回调函数
 
             error: function (data) {
-                $('#loading').addClass("show111");  
-               
-
+                //$('#loading').addClass("show111");  
+                $("#result").text('请求出错！');
+                //延迟2秒执行
+                var timeout = setTimeout(function () {
+                    //加载完关闭
+                    $('#loading').modal('hide');
+                }, 1000);
                 console.log("出错啦..." + eval(data))
                 //alert("出错啦...")
                 

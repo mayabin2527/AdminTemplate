@@ -1,8 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using BatchPieces.Tools;
+using Spire.Doc;
+using Spire.Doc.Documents;
+
 //using Microsoft.Office.Interop.Word;
 
 namespace BatchPieces.Controllers
@@ -53,13 +58,57 @@ namespace BatchPieces.Controllers
 
         public JsonResult AddDocModel(string username, string age)
         {
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 5; i++)
             {
                 System.Threading.Thread.Sleep(1000);
             }
-            return Json(new { Path = "ttt", State = "Ok" }, JsonRequestBehavior.AllowGet);
+            
             //使用此插件替换书签，可使用免费版，教程：https://blog.csdn.net/ssw_jack/article/details/80061791
             //官网：https://www.e-iceblue.com/Introduce/word-for-net-introduce.html#.YohSjJNByrc
+
+
+            //加载模板文档
+            Document doc = new Document();
+            doc.LoadFromFile(@"C:\Users\Administrator\Desktop\bookmark_template.docx");
+            
+            
+
+            //初始化Bookmark对象
+            DocumentTools bookmark = new DocumentTools(doc);
+
+            //用文本替换书签bookmark_text的内容
+            string text = "XXX科技股份有限公司成立于2010年12月，是一家致力于高新技术产品研发、生产、销售的高科技股份制企业，"
+                + "公司坚持以技术创新为核心，以知识产权为基础，以人才战略为支撑，经过多年的砺练与发展，公司已逐步成以创新为引导的，"
+                + "产品具有竞争力，人才素质优良的新兴科技企业。";
+            bookmark.ReplaceContent("bookmark_text", text, true);
+            /*
+            //用图片替换书签bookmark_picture的内容
+            string picPath = @"C:\Users\Administrator\Desktop\company_logo.jpg";
+            bookmark.ReplaceContent("bookmark_picture", picPath, 80f, 80f, TextWrappingStyle.TopAndBottom, ShapeHorizontalAlignment.Center);
+
+            //创建模拟数据
+            DataTable dt = new DataTable();
+            dt.Columns.Add("employee_id", typeof(string));
+            dt.Columns.Add("name", typeof(string));
+            dt.Columns.Add("age", typeof(string));
+            dt.Columns.Add("sex", typeof(string));
+            dt.Columns.Add("title", typeof(string));
+            dt.Rows.Add(new string[] { "工号", "姓名", "年龄", "性别", "职位" });
+            dt.Rows.Add(new string[] { "1023", "Nancy", "28", "女", "Java程序员" });
+            dt.Rows.Add(new string[] { "1024", "James", "34", "男", ".NET程序员" });
+            dt.Rows.Add(new string[] { "1025", "Kobe", "38", "男", "系统管理员" });
+
+            //创建表格，并填充数据
+            Table table = bookmark.CreateTable(dt.Rows.Count, dt.Columns.Count, 100f, RowAlignment.Left, dt);
+
+            //用表格替换书签bookmark_table的内容
+            bookmark.ReplaceContent("bookmark_table", table);
+            */
+            //生成Word文件
+            string path = Server.MapPath("upload/") + DateTime.Now.ToString("yyMMddhhmmss") + "output.docx";
+            doc.SaveToFile(path, FileFormat.Docx2013);
+
+            return Json(new { Path = path, State = "Ok" }, JsonRequestBehavior.AllowGet);
 
             /*无效代码
              * Microsoft.Office.Interop.Word.Application app = new Microsoft.Office.Interop.Word.Application();

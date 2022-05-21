@@ -41,3 +41,9 @@
 /Users/ma_yabin/AdminTemplate/BatchPieces/obj/Debug/BatchPieces.pdb
 /Users/ma_yabin/AdminTemplate/BatchPieces/bin/Newtonsoft.Json.dll
 /Users/ma_yabin/AdminTemplate/BatchPieces/bin/Newtonsoft.Json.xml
+/Users/ma_yabin/AdminTemplate/BatchPieces/bin/Spire.Doc.dll
+/Users/ma_yabin/AdminTemplate/BatchPieces/bin/Spire.License.dll
+/Users/ma_yabin/AdminTemplate/BatchPieces/bin/Spire.Pdf.dll
+/Users/ma_yabin/AdminTemplate/BatchPieces/bin/Spire.Doc.xml
+/Users/ma_yabin/AdminTemplate/BatchPieces/bin/Spire.License.xml
+/Users/ma_yabin/AdminTemplate/BatchPieces/bin/Spire.Pdf.xml
