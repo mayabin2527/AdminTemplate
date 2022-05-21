@@ -58,7 +58,9 @@ namespace BatchPieces.Controllers
                 System.Threading.Thread.Sleep(1000);
             }
             return Json(new { Path = "ttt", State = "Ok" }, JsonRequestBehavior.AllowGet);
-            
+            //使用此插件替换书签，可使用免费版，教程：https://blog.csdn.net/ssw_jack/article/details/80061791
+            //官网：https://www.e-iceblue.com/Introduce/word-for-net-introduce.html#.YohSjJNByrc
+
             /*无效代码
              * Microsoft.Office.Interop.Word.Application app = new Microsoft.Office.Interop.Word.Application();
             string version = app.Version;
@@ -121,14 +123,14 @@ SetBookMarksValue(null, "T1", "ItemName");
 //path = "http://WWW.AAA.B/SOU/D.PDF"+Server.MapPath("/SOURCE");
 return Json(new { Path= path, State = "Ok" }, JsonRequestBehavior.AllowGet);*/
 
-}
-/// <summary>
-/// 根据Word书签赋值 
-/// </summary>
-/// <param name="doc"></param>
-/// <param name="name"></param>
-/// <param name="value"></param>
-private void SetBookMarksValue(Microsoft.Office.Interop.Word.DocumentClass doc, object name, string value)
+        }
+        /// <summary>
+        /// 根据Word书签赋值 
+        /// </summary>
+        /// <param name="doc"></param>
+        /// <param name="name"></param>
+        /// <param name="value"></param>
+        private void SetBookMarksValue(Microsoft.Office.Interop.Word.DocumentClass doc, object name, string value)
 {
 doc.Bookmarks.get_Item(ref name).Range.Text = value;
 }
