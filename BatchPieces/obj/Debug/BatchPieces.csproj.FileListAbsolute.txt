@@ -46,3 +46,4 @@
 /Users/ma_yabin/AdminTemplate/BatchPieces/obj/Debug/BatchPieces.csproj.CopyComplete
 /Users/ma_yabin/AdminTemplate/BatchPieces/obj/Debug/BatchPieces.dll
 /Users/ma_yabin/AdminTemplate/BatchPieces/obj/Debug/BatchPieces.pdb
+/Users/ma_yabin/AdminTemplate/BatchPieces/obj/Debug/BatchPieces.csprojAssemblyReference.cache

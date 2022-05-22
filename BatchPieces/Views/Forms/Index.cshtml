@@ -483,6 +483,33 @@
 
                 </div>
 
+                <!--table2 动态拼接-->
+                <div id="divdatatable2" class="x_content">
+                    <!--
+    <table id="datatable2" class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Username</th>
+            </tr>
+        </thead>
+        <tbody id="table1">
+            <tr>
+                <th scope="row">1</th>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>mdo</td>
+
+            </tr>
+        </tbody>
+    </table>
+    -->
+                </div>
+
+
+
                 <!-- loading -->
                 <div class="modal fade" id="loading" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop='static'>
                     <div class="modal-dialog" role="document">
@@ -1589,6 +1616,66 @@
         });
     }
 
+    function initDatatable(json) {
+        console.log('initDatatable');
+        //动态拼接参考：https://blog.csdn.net/weixin_30955617/article/details/94882385
+        //创建table
+        var table =
+            document.createElement("table");
+        table.className = 'table';
+        table.id="tableidcus"
+        @* div.appendChild(document.createTextNode("test"));
+        div.style.position = "absolute";
+        div.style.left = '20px';
+        div.style.top = '20px';
+        div.style.overflow = "hidden";
+        div.style.zIndex = "9999";
+        div.style.opacity = 0.3; *@
+        //创建thead，并追加到table中
+        var thead =
+            document.createElement("thead");
+        table.appendChild(thead);
+        //创建tr,并追加到thead
+        var tr =
+            document.createElement("tr");
+        thead.appendChild(tr);
+        //json数组中第1个人的每个属性
+        for (var key in json[0]) {
+            //创建th
+            var th =
+                document.createElement("th");
+            //设置th的内容为key
+            th.innerHTML = key;
+            //将th追加到tr中
+            tr.appendChild(th);
+        }
+        //创建tbody元素
+        var tbody =
+            document.createElement("tbody");
+        //将tbody追加到table中
+        table.appendChild(tbody);
+        //遍历json中所有员工
+        for (var i = 0; i < json.length; i++) {
+            //创建tr
+            var tr =
+                document.createElement("tr");
+            //遍历当前员工的每个属性
+            for (var key in json[i]) {
+                //创建td
+                var td =
+                    document.createElement("td");
+                //设置td的内容为当前员工的当前属性值
+                td.innerHTML = json[i][key];
+                //将td追加到tr
+                tr.appendChild(td);
+            }//(遍历结束)
+            //将tr追加到tbody中
+            tbody.appendChild(tr);
+        }
+//将table添加到id为data的div下
+        $("#divdatatable2").empty();//清空  
+        $("#divdatatable2").append(table);
+    }
 
     function search() {
         console.log('search')
@@ -1601,6 +1688,10 @@
                 if (data.State = "Ok") {
                     $("#table1").empty();//清空  
                     $("#table1").append(data.data);
+                    console.log(data)
+                    @*动态拼接table根据list*@
+                    initDatatable(data.List);
+
                 }
 
             },error: function (data) {
