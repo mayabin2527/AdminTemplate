@@ -217,8 +217,100 @@ List<TableList> list1 = new List<TableList>();
      list1.Add(new TableList() { 编号 = ID, 姓什么 = First, 名字 = LastName, 用户名称 = Salary });
 
 }
-            return Json(new { data = " <tr>  <td> 5</td> <td>Larry5</td> <td>the Bird5</td>   <td>twitter5</td> </tr >",List= list1, State = "Ok" }, JsonRequestBehavior.AllowGet);
+            //动态拼接table根据datatable
+            DataTable dt = new DataTable("table_AX");
+            dt.Columns.Add("column0", System.Type.GetType("System.String"));
+            dt.Columns.Add("column1", System.Type.GetType("System.String"));
+            dt.Columns.Add("姓名", System.Type.GetType("System.String"));
+            dt.Columns.Add("昵称", System.Type.GetType("System.String"));
+            dt.Columns.Add("城市", System.Type.GetType("System.String"));
+            for (int i = 0; i <= 10; i++)
+            {
+                DataRow dr = dt.NewRow();
+
+                dr["column0"] = "AX"+i.ToString();
+                dr["column1"] = "column1"+i.ToString();
+                dr["姓名"] = "姓名" + i.ToString(); 
+                dr["昵称"] = "昵称" +i.ToString();
+                dr["城市"] = "城市"+i.ToString();
+                dt.Rows.Add(dr);
+            }
+            var htmlDatatable=getHtmlTable(dt);
+            return Json(new { data = " <tr>  <td> 5</td> <td>Larry5</td> <td>the Bird5</td>   <td>twitter5</td> </tr >",List= list1, htmlTable= htmlDatatable, State = "Ok" }, JsonRequestBehavior.AllowGet);
 }
+
+        /// <summary>
+        /// 根据datatable返回html table
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        public string getHtmlTable(DataTable data) {
+            /*
+            //邮件内容table
+            string tableHtml = "<table>";
+            tableHtml += "<tr>";
+            for (int i = 0; i < data.Columns.Count; i++)
+            {
+                
+                tableHtml += "<td>";
+                tableHtml += data.Columns[i].ColumnName;
+                tableHtml += "</td>";
+
+        }
+        tableHtml += "</tr>";
+
+            for (int i = 0; i < data.Rows.Count; i++)
+            {
+                tableHtml += "<tr>";
+                for (int j = 0; j < data.Columns.Count; j++)
+                {
+                    tableHtml += "<td>";
+                    tableHtml += data.Rows[i][j].ToString();
+                    tableHtml += "</td>";
+
+                }
+                tableHtml += "</tr>";
+            }
+
+            tableHtml += "</table>";
+            */
+
+
+            //网页内容table
+            string tableHtml = "<table id=\"datatable3\" class=\"table\">";
+            tableHtml += "<thead>";
+            tableHtml += "<tr>";
+            for (int i = 0; i < data.Columns.Count; i++)
+            {
+
+                tableHtml += "<th>";
+                tableHtml += data.Columns[i].ColumnName;
+                tableHtml += "</th>";
+
+            }
+            tableHtml += "</tr>";
+            tableHtml += "</thead>";
+
+            tableHtml += "<tbody id=\"table3\">";
+            for (int i = 0; i < data.Rows.Count; i++)
+            {
+                tableHtml += "<tr>";
+                for (int j = 0; j < data.Columns.Count; j++)
+                {
+                    tableHtml += "<td>";
+                    tableHtml += data.Rows[i][j].ToString();
+                    tableHtml += "</td>";
+
+                }
+                tableHtml += "</tr>";
+            }
+            tableHtml += "</tbody>";
+            tableHtml += "</table>";
+
+
+            return tableHtml;
+        }
+
 public class Employee
 {
 
