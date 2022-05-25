@@ -224,6 +224,11 @@ List<TableList> list1 = new List<TableList>();
             dt.Columns.Add("姓名", System.Type.GetType("System.String"));
             dt.Columns.Add("昵称", System.Type.GetType("System.String"));
             dt.Columns.Add("城市", System.Type.GetType("System.String"));
+            for (int i = 5; i < 51; i++)
+            {
+                dt.Columns.Add("column" + i.ToString(), System.Type.GetType("System.String"));
+            }
+           
             for (int i = 0; i <= 10; i++)
             {
                 DataRow dr = dt.NewRow();
@@ -233,6 +238,7 @@ List<TableList> list1 = new List<TableList>();
                 dr["姓名"] = "姓名" + i.ToString(); 
                 dr["昵称"] = "昵称" +i.ToString();
                 dr["城市"] = "城市"+i.ToString();
+
                 dt.Rows.Add(dr);
             }
             var htmlDatatable=getHtmlTable(dt);
