@@ -81,7 +81,13 @@
                                     <a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
                                         <li><a href="Forms">生成</a></li>
-                                        <li><a href="FileList">文件列表</a></li>
+                                        <!--判断是否是管理员添加相关菜单权限-->
+                                        @{ if(Session["Admin"]=="yes")
+                                                        {
+                                                            <li><a href="FileList">文件列表</a></li>
+                                                        }
+                                            }
+
                                     </ul>
                                 </li>
 

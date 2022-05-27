@@ -17,6 +17,7 @@ namespace BatchPieces.Controllers
         public JsonResult Submit(string username,string age)
         {
             Session["User"] = username;
+            Session["Admin"] = "yes";
             var res = new JsonResult();
 
             //var value = "actionValue"; 
