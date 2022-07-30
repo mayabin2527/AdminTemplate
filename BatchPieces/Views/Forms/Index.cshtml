@@ -1587,7 +1587,7 @@
 
                 //alert(data.State);
                 console.log(data)
-                if (data.State = "Ok") {
+                if (data.State == "Ok") {
                    // window.location.href = "Home";
                     $("#result").text('导出成功！');
                    // setTimeout(loading(), 3000);
@@ -1692,7 +1692,7 @@
             type: "POST",
             data: { "username": $("#fileid").val(), "age": 23 },
             success: function (data) {
-                if (data.State = "Ok") {
+                if (data.State == "Ok") {
                     $("#table1").empty();//清空
                     $("#table1").append(data.data);
                     console.log(data)
@@ -1756,7 +1756,7 @@
             url: "Forms/GetCompany",
             type: "POST",
             success: function (data) {
-                if (data.State = "Ok") {
+                if (data.State == "Ok") {
                     $("#company").empty();
                     $.each(data.list, function (i, item) {
 
@@ -1810,7 +1810,7 @@
                 type: "POST",
                 data: { "company": selectedPrceId},
                 success: function (data) {
-                    if (data.State = "Ok") {
+                    if (data.State == "Ok") {
                         $("#city").empty();
                         $.each(data.list, function (i, item) {
 
